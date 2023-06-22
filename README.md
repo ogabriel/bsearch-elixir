@@ -23,7 +23,9 @@ be found at <https://hexdocs.pm/bsearch>.
 ## TODO
 
 - find
+- find with module.compare (like Enum does)
 - find_by - find by function
+- find_by - find by function with module.compare (like Enum does)
 - find_index
 - valid? - check if the tuple is valid
 - standarize - standarize a list, a tuple or anything else to make it valid to sort
