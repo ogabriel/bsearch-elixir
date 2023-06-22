@@ -19,13 +19,11 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at <https://hexdocs.pm/bsearch>.
 
-
 ## TODO
 
 - find
-- find with module.compare (like Enum does)
-- find_by - find by function
-- find_by - find by function with module.compare (like Enum does)
+  - with module.compare (like Enum does)
+  - find by function - like use a function to enter a map or something
 - find_index
 - valid? - check if the tuple is valid
 - standarize - standarize a list, a tuple or anything else to make it valid to sort
