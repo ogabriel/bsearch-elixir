@@ -1,8 +1,7 @@
 defmodule BsearchTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   doctest Bsearch
 
-  test "greets the world" do
-    assert Bsearch.hello() == :world
+  describe "member?/2" do
   end
 end

@@ -21,7 +21,7 @@ be found at <https://hexdocs.pm/bsearch>.
 
 ## TODO
 
-- find
+- member?
   - with module.compare (like Enum does)
   - find by function - like use a function to enter a map or something
 - find_index
