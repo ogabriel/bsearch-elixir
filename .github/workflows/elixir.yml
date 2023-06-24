@@ -7,6 +7,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -17,19 +21,28 @@ jobs:
         elixir: [1.14.5]
 
     steps:
+    # Setup image
     - uses: actions/checkout@v3
     - uses: erlef/setup-beam@v1
       with:
         otp-version: ${{matrix.otp}}
         elixir-version: ${{matrix.elixir}}
+
+    # Deps
     - name: Restore dependencies cache
+      id: deps
       uses: actions/cache@v3
       with:
         path: deps
-        key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
-        restore-keys: ${{ runner.os }}-mix-
+        key: deps-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ github.ref }}-${{ hashFiles('**/mix.lock') }}
+        restore-keys: |
+          deps-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ github.ref }}
+          deps-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-
+          deps-${{ runner.os }}-${{ matrix.otp }}-
+          deps-${{ runner.os }}-
     - name: Install dependencies
-      run: mix do deps.get, deps.compile
+      if: steps.deps.outputs.cache-hit != 'true'
+      run: mix deps.get
 
     # code checks
     - name: Run mix compile
