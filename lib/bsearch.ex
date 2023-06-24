@@ -94,4 +94,41 @@ defmodule Bsearch do
   defp compare(value, value), do: :eq
   defp compare(value1, value2) when value1 < value2, do: :lt
   defp compare(value1, value2) when value1 > value2, do: :gt
+
+  @doc """
+  Binary search only works on ordered tuples, so this function normalizes a tuple or a list
+
+  ## Examples
+
+      iex> Bsearch.normalize([3, 2, 1])
+      {1, 2, 3}
+
+      iex> Bsearch.normalize([2, 3, 2])
+      {2, 3}
+
+      iex> Bsearch.normalize({3, 2, 1})
+      {1, 2, 3}
+
+      iex> Bsearch.normalize({3, 3, 1})
+      {1, 3}
+  """
+
+  @spec normalize(list() :: tuple()) :: tuple()
+  def normalize({}), do: {}
+  def normalize([]), do: {}
+  def normalize({one}), do: {one}
+  def normalize([one]), do: {one}
+
+  def normalize(list) when is_list(list) do
+    list
+    |> Enum.sort()
+    |> Enum.uniq()
+    |> List.to_tuple()
+  end
+
+  def normalize(tuple) when is_tuple(tuple) do
+    tuple
+    |> Tuple.to_list()
+    |> normalize
+  end
 end
