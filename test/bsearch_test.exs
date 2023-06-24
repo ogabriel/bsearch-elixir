@@ -16,6 +16,66 @@ defmodule BsearchTest do
     [string_tuple: tuple, string_list: list]
   end
 
+  describe "member?/2" do
+    test "send list instead of tuple" do
+      assert_raise FunctionClauseError, fn ->
+        Bsearch.member?([], 1)
+      end
+    end
+
+    test "send empty tuple" do
+      refute Bsearch.member?({}, 1)
+    end
+  end
+
+  describe "member?/2 with integer" do
+    test "send tuple with one value to find wrong value" do
+      refute Bsearch.member?({2}, 1)
+    end
+
+    test "send tuple with one value to find correct value" do
+      assert Bsearch.member?({1}, 1)
+    end
+
+    test "send tuple with values to find smaller value", %{integer_tuple: tuple} do
+      refute Bsearch.member?(tuple, -1)
+    end
+
+    test "send tuple with values to find bigger value", %{integer_tuple: tuple} do
+      refute Bsearch.member?(tuple, 101)
+    end
+
+    test "send tuple with many values to find", %{integer_tuple: tuple, integer_list: list} do
+      Enum.each(list, fn value ->
+        assert Bsearch.member?(tuple, value)
+      end)
+    end
+  end
+
+  describe "member?/2 with string" do
+    test "send tuple with one value to find wrong value" do
+      refute Bsearch.member?({"Eevee"}, "Flareon")
+    end
+
+    test "send tuple with one value to find correct value" do
+      assert Bsearch.member?({"Vaporeon"}, "Vaporeon")
+    end
+
+    test "send tuple with values to find smaller value", %{string_tuple: tuple} do
+      refute Bsearch.member?(tuple, "Drago")
+    end
+
+    test "send tuple with values to find bigger value", %{string_tuple: tuple} do
+      refute Bsearch.member?(tuple, "Agumon")
+    end
+
+    test "send tuple with many values to find", %{string_tuple: tuple, string_list: list} do
+      Enum.each(list, fn value ->
+        assert Bsearch.member?(tuple, value)
+      end)
+    end
+  end
+
   describe "find_index/2" do
     test "send list instead of tuple" do
       assert_raise FunctionClauseError, fn ->

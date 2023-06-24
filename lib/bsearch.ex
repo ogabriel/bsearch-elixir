@@ -4,6 +4,35 @@ defmodule Bsearch do
   """
 
   @doc """
+  Returns true of false of whether a tuple contains a certain value.
+
+  ## Examples
+
+      iex> Bsearch.member?({1, 2, 3}, 1)
+      true
+
+      iex> Bsearch.member?({1, 2, 3}, 2)
+      true
+
+      iex> Bsearch.member?({1, 2, 3}, 3)
+      true
+
+      iex> Bsearch.member?({1, 2, 3}, 0)
+      false
+
+      iex> Bsearch.member?({1, 2, 3}, 4)
+      false
+  """
+
+  @spec member?(tuple(), any()) :: boolean()
+  def member?(tuple, value) do
+    case _find_index(tuple, value) do
+      {:ok, _} -> true
+      _ -> false
+    end
+  end
+
+  @doc """
   Returns the index of the position of a value inside the tuple, if the value is not present, it will return
   an tuple with error status.
 
