@@ -113,7 +113,7 @@ defmodule Bsearch do
       {1, 3}
   """
 
-  @spec normalize(list() :: tuple()) :: tuple()
+  @spec normalize(list() | tuple()) :: tuple()
   def normalize({}), do: {}
   def normalize([]), do: {}
   def normalize({one}), do: {one}
