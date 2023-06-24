@@ -7,6 +7,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -17,54 +21,67 @@ jobs:
         elixir: [1.14.5]
 
     steps:
+    # Setup image
     - uses: actions/checkout@v3
     - uses: erlef/setup-beam@v1
       with:
         otp-version: ${{matrix.otp}}
         elixir-version: ${{matrix.elixir}}
+
+    # Deps
     - name: Restore dependencies cache
+      id: deps
       uses: actions/cache@v3
       with:
         path: deps
-        key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
-        restore-keys: ${{ runner.os }}-mix-
+        key: deps-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ github.ref }}-${{ hashFiles('**/mix.lock') }}
+        restore-keys: |
+          deps-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ github.ref }}
+          deps-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-
+          deps-${{ runner.os }}-${{ matrix.otp }}-
+          deps-${{ runner.os }}-
     - name: Install dependencies
-      run: mix do deps.get, deps.compile
+      if: steps.deps.outputs.cache-hit != 'true'
+      run: mix deps.get
 
-    # code checks
-    - name: Run mix compile
+    # Compile
+    - name: Restore compile cache
+      id: compile
+      uses: actions/cache@v3
+      with:
+        path: _build
+        key: compile-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ github.ref }}-${{ hashFiles('**/mix.lock') }}
+        restore-keys: |
+          compile-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ github.ref }}
+          compile-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-
+          compile-${{ runner.os }}-${{ matrix.otp }}-
+          compile-${{ runner.os }}-
+    - name: Compile dependencies
+      if: steps.compile.outputs.cache-hit != 'true'
+      run: mix deps.compile
+    - name: Compile code
       run: mix compile --warnings-as-errors
+
+    # Code checks
     - name: Run mix format
       run: mix format --check-formatted --dry-run
     - name: Run mix credo
       run: mix credo
 
-    # tests
+    # Tests
     - name: Run tests
       run: mix test
 
     # dialyzer
     - name: Restore PLT cache
-      id: plt_cache
-      uses: actions/cache/restore@v3
+      uses: actions/cache@v3
       with:
-        key: |
-          plt-${{ runner.os }}-${{ steps.beam.outputs.otp-version }}-${{ steps.beam.outputs.elixir-version }}-${{ hashFiles('**/mix.lock') }}
+        path: priv/plts
+        key: plt-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ github.ref }}-${{ hashFiles('**/mix.lock') }}
         restore-keys: |
-          plt-${{ runner.os }}-${{ steps.beam.outputs.otp-version }}-${{ steps.beam.outputs.elixir-version }}-
-        path: |
-          priv/plts
-    - name: Create PLTs
-      if: steps.plt_cache.outputs.cache-hit != 'true'
-      run: mix dialyzer --plt
-    - name: Save PLT cache
-      id: plt_cache_save
-      uses: actions/cache/save@v3
-      if: steps.plt_cache.outputs.cache-hit != 'true'
-      with:
-        key: |
-          plt-${{ runner.os }}-${{ steps.beam.outputs.otp-version }}-${{ steps.beam.outputs.elixir-version }}-${{ hashFiles('**/mix.lock') }}
-        path: |
-          priv/plts
+          plt-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ github.ref }}
+          plt-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-
+          plt-${{ runner.os }}-${{ matrix.otp }}-
+          plt-${{ runner.os }}-
     - name: Run dialyzer
       run: mix dialyzer --format github
