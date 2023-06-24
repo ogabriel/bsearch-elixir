@@ -13,12 +13,21 @@ concurrency:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     name: OTP ${{matrix.otp}} / Elixir ${{matrix.elixir}}
     strategy:
+      fail-fast: false
       matrix:
-        otp: [25.3.2.2]
-        elixir: [1.14.5]
+        include:
+          - elixir: 1.12.x
+            otp: 23
+            os: ubuntu-20.04
+          - elixir: 1.13.x
+            otp: 24
+            os: ubuntu-20.04
+          - elixir: 1.14.x
+            otp: 25
+            os: ubuntu-latest
 
     steps:
     # Setup image
@@ -81,7 +90,5 @@ jobs:
         restore-keys: |
           plt-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ github.ref }}
           plt-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-
-          plt-${{ runner.os }}-${{ matrix.otp }}-
-          plt-${{ runner.os }}-
     - name: Run dialyzer
       run: mix dialyzer --format github
