@@ -7,9 +7,9 @@ on:
 permissions:
   contents: read
 
-concurrency:
-  group: ${{ github.ref }}-${{ matrix.otp }}-${{ matrix.elixir }}
-  cancel-in-progress: true
+# concurrency:
+#   group: ${{ github.ref }}-${{ matrix.otp }}-${{ matrix.elixir }}
+#   cancel-in-progress: true
 
 jobs:
   test:
