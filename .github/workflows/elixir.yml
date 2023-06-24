@@ -15,18 +15,20 @@ permissions:
   contents: read
 
 jobs:
-  build:
-
-    name: Build and test
+  test:
     runs-on: ubuntu-latest
-    
+    name: OTP ${{matrix.otp}} / Elixir ${{matrix.elixir}}
+    strategy:
+      matrix:
+        otp: [25.3.2.2]
+        elixir: [1.14.5]
+
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Elixir
-      uses: erlef/setup-beam@988e02bfe678367a02564f65ca2e37726dc0268f
+    - uses: erlef/setup-beam@v1
       with:
-        elixir-version: '1.14.5' # Define the elixir version
-        otp-version: '25.3.2.2' # Define the OTP version
+        otp-version: ${{matrix.otp}}
+        elixir-version: ${{matrix.elixir}}
     - name: Restore dependencies cache
       uses: actions/cache@v3
       with:
@@ -34,7 +36,9 @@ jobs:
         key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
         restore-keys: ${{ runner.os }}-mix-
     - name: Install dependencies
-      run: mix deps.get
+      run: mix do deps.get, deps.compile
+    - name: Run mix compile
+      run: mix compile --warnings-as-errors
     - name: Run mix format
       run: mix format --check-formatted --dry-run
     - name: Run mix credo
