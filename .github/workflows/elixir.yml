@@ -23,6 +23,10 @@ jobs:
         otp: [25.3.2.2]
         elixir: [1.14.5]
 
+    env:
+      MIX_ENV: test
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     steps:
     - uses: actions/checkout@v3
     - uses: erlef/setup-beam@v1
@@ -42,4 +46,4 @@ jobs:
     - name: Run mix credo
       run: mix credo
     - name: Run tests
-      run: mix test
+      run: mix coveralls.github
