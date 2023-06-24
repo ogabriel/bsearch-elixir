@@ -20,14 +20,14 @@ jobs:
         otp: [21.3, 24.3, 25.3]
         elixir: [1.10, 1.12, 1.14]
         exclude:
-          - elixir: 1.10.4
-            otp: 24.3.4.12
-          - elixir: 1.10.4
-            otp: 25.3.2.2
-          - elixir: 1.12.3
-            otp: 25.3.2.2
-          - elixir: 1.14.5
-            otp: 21.3.8.24
+          - elixir: 1.10
+            otp: 24.3
+          - elixir: 1.10
+            otp: 25.3
+          - elixir: 1.12
+            otp: 25.3
+          - elixir: 1.14
+            otp: 21.3
 
     steps:
     # Setup image
