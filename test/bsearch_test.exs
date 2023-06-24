@@ -135,4 +135,32 @@ defmodule BsearchTest do
       end)
     end
   end
+
+  describe "normalize/1" do
+    test "send empty tuple" do
+      assert Bsearch.normalize({}) == {}
+    end
+
+    test "send empty list" do
+      assert Bsearch.normalize([]) == {}
+    end
+
+    test "send tuple with one value" do
+      assert Bsearch.normalize({"Miles"}) == {"Miles"}
+    end
+
+    test "send list with one value" do
+      assert Bsearch.normalize(["Miguel"]) == {"Miguel"}
+    end
+
+    test "send tuple with more values" do
+      assert Bsearch.normalize({"Gwen", "Stacy", "Peter", "Parker", "Morales", "Miles"}) ==
+               {"Gwen", "Miles", "Morales", "Parker", "Peter", "Stacy"}
+    end
+
+    test "send list with more values" do
+      assert Bsearch.normalize(["Spot", "Spider", "Scarlet", "O'hara", "Miguel"]) ==
+               {"Miguel", "O'hara", "Scarlet", "Spider", "Spot"}
+    end
+  end
 end
