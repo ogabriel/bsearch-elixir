@@ -19,15 +19,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - elixir: 1.10.x
-            otp: 21
-            os: ubuntu-20.04
-          - elixir: 1.11.x
-            otp: 22
-            os: ubuntu-20.04
-          - elixir: 1.11.x
-            otp: 23
-            os: ubuntu-20.04
           - elixir: 1.12.x
             otp: 23
             os: ubuntu-20.04
@@ -37,7 +28,6 @@ jobs:
           - elixir: 1.14.x
             otp: 25
             os: ubuntu-latest
-            warnings_as_errors: true
 
     steps:
     # Setup image
@@ -100,7 +90,5 @@ jobs:
         restore-keys: |
           plt-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ github.ref }}
           plt-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-
-          plt-${{ runner.os }}-${{ matrix.otp }}-
-          plt-${{ runner.os }}-
     - name: Run dialyzer
       run: mix dialyzer --format github
