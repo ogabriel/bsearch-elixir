@@ -74,7 +74,6 @@ jobs:
 
     # dialyzer
     - name: Restore PLT cache
-      id: plt
       uses: actions/cache/restore@v3
       with:
         path: priv/plts
@@ -84,8 +83,5 @@ jobs:
           plt-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-
           plt-${{ runner.os }}-${{ matrix.otp }}-
           plt-${{ runner.os }}-
-    - name: Create PLTs
-      if: steps.plt.outputs.cache-hit != 'true'
-      run: mix dialyzer --plt
     - name: Run dialyzer
       run: mix dialyzer --format github
