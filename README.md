@@ -1,6 +1,6 @@
 # Bsearch
 
-Implementation of a binary search sorting using tuples
+Implementation of a binary search using tuples.
 
 ## Installation
 
@@ -22,8 +22,5 @@ be found at <https://hexdocs.pm/bsearch>.
 ## TODO
 
 - member?
-  - with module.compare (like Enum does)
   - find by function - like use a function to enter a map or something
-- find_index
-- valid? - check if the tuple is valid
-- standarize - standarize a list, a tuple or anything else to make it valid to sort
+- valid? - check if the tuple is valid to be used by the binary search
