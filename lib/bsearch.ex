@@ -4,7 +4,7 @@ defmodule Bsearch do
   """
 
   @doc """
-  Returns true of false of wheater a tuple contains a certain value
+  Returns true of false of whether a tuple contains a certain value.
 
   ## Examples
 
