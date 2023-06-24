@@ -16,18 +16,28 @@ jobs:
     runs-on: ubuntu-20.04
     name: OTP ${{matrix.otp}} / Elixir ${{matrix.elixir}}
     strategy:
+      fail-fast: false
       matrix:
-        otp: [21.3, 24.3, 25.3]
-        elixir: [1.10, 1.12, 1.14]
-        exclude:
-          - elixir: 1.10
-            otp: 24.3
-          - elixir: 1.10
-            otp: 25.3
-          - elixir: 1.12
-            otp: 25.3
-          - elixir: 1.14
-            otp: 21.3
+        include:
+          - elixir: 1.10.x
+            otp: 21
+            os: ubuntu-20.04
+          - elixir: 1.11.x
+            otp: 22
+            os: ubuntu-20.04
+          - elixir: 1.11.x
+            otp: 23
+            os: ubuntu-20.04
+          - elixir: 1.12.x
+            otp: 23
+            os: ubuntu-20.04
+          - elixir: 1.13.x
+            otp: 24
+            os: ubuntu-20.04
+          - elixir: 1.14.x
+            otp: 25
+            os: ubuntu-latest
+            warnings_as_errors: true
 
     steps:
     # Setup image
