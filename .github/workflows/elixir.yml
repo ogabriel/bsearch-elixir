@@ -44,15 +44,31 @@ jobs:
       if: steps.deps.outputs.cache-hit != 'true'
       run: mix deps.get
 
-    # code checks
-    - name: Run mix compile
+    # Compile
+    - name: Restore dependencies cache
+      id: compile
+      uses: actions/cache@v3
+      with:
+        path: _build
+        key: compile-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ github.ref }}-${{ hashFiles('**/mix.lock') }}
+        restore-keys: |
+          compile-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ github.ref }}
+          compile-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-
+          compile-${{ runner.os }}-${{ matrix.otp }}-
+          compile-${{ runner.os }}-
+    - name: Compile dependencies
+      if: steps.compile.outputs.cache-hit != 'true'
+      run: mix deps.compile
+    - name: Compile code
       run: mix compile --warnings-as-errors
+
+    # Code checks
     - name: Run mix format
       run: mix format --check-formatted --dry-run
     - name: Run mix credo
       run: mix credo
 
-    # tests
+    # Tests
     - name: Run tests
       run: mix test
 
