@@ -83,12 +83,21 @@ jobs:
 
     # dialyzer
     - name: Restore PLT cache
-      uses: actions/cache@v3
+      id: plt
+      uses: actions/cache/restore@v3
       with:
         path: priv/plts
         key: plt-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ github.ref }}-${{ hashFiles('**/mix.lock') }}
         restore-keys: |
           plt-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ github.ref }}
           plt-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-
+    - name: Create PLT
+      run: mix dialyzer --plt
+    - name: Save PLT cache
+      uses: actions/cache/save@v3
+      if: steps.plt.outputs.cache-hit != 'true'
+      with:
+        path: priv/plts
+        key: plt-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ github.ref }}-${{ hashFiles('**/mix.lock') }}
     - name: Run dialyzer
       run: mix dialyzer --format github
