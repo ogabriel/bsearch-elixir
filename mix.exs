@@ -16,8 +16,8 @@ defmodule Bsearch.MixProject do
         "coveralls.html": :test
       ],
       dialyzer: [
-        plt_local_path: "priv/plts/local",
-        plt_core_path: "priv/plts/core"
+        plt_local_path: "priv/plts/local/",
+        plt_core_path: "priv/plts/core/"
       ]
     ]
   end
