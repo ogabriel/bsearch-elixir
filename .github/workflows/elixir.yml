@@ -89,7 +89,11 @@ jobs:
           plt-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-
     - name: Create PLTs
       if: steps.plt.outputs.cache-hit != 'true'
-      run: mix dialyzer --plt
+      run: |
+        mkdir -p priv/plts
+        mkdir -p priv/plts/core.plt
+        mkdir -p priv/plts/local.plt
+        mix dialyzer --plt
     - name: Save PLT cache
       uses: actions/cache/save@v3
       if: steps.plt.outputs.cache-hit != 'true'
