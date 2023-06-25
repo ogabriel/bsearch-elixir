@@ -49,8 +49,6 @@ jobs:
         restore-keys: |
           deps-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ github.ref }}
           deps-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-
-          deps-${{ runner.os }}-${{ matrix.otp }}-
-          deps-${{ runner.os }}-
     - name: Install dependencies
       if: steps.deps.outputs.cache-hit != 'true'
       run: mix deps.get
@@ -65,8 +63,6 @@ jobs:
         restore-keys: |
           compile-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ github.ref }}
           compile-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-
-          compile-${{ runner.os }}-${{ matrix.otp }}-
-          compile-${{ runner.os }}-
     - name: Compile dependencies
       if: steps.compile.outputs.cache-hit != 'true'
       run: mix deps.compile
@@ -85,12 +81,26 @@ jobs:
 
     # dialyzer
     - name: Restore PLT cache
-      uses: actions/cache@v3
+      id: plt
+      uses: actions/cache/restore@v3
       with:
         path: priv/plts
         key: plt-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ github.ref }}-${{ hashFiles('**/mix.lock') }}
         restore-keys: |
           plt-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ github.ref }}
           plt-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-
+    - name: Create PLTs
+      if: steps.plt.outputs.cache-hit != 'true'
+      run: |
+        mkdir -p priv/plts
+        mkdir -p priv/plts/core.plt
+        mkdir -p priv/plts/local.plt
+        mix dialyzer --plt
+    - name: Save PLT cache
+      uses: actions/cache/save@v3
+      if: steps.plt.outputs.cache-hit != 'true'
+      with:
+        path: priv/plts
+        key: plt-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ github.ref }}-${{ hashFiles('**/mix.lock') }}
     - name: Run dialyzer
       run: mix dialyzer --format github
