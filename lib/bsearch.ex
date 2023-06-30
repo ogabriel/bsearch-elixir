@@ -61,8 +61,6 @@ defmodule Bsearch do
 
   @spec _find_index(tuple(), any()) :: {:ok, non_neg_integer()} | {:error, :not_found}
   defp _find_index({}, _), do: {:error, :not_found}
-  defp _find_index({value}, value), do: {:ok, 0}
-  defp _find_index({_}, _), do: {:error, :not_found}
 
   defp _find_index(tuple, value) when is_tuple(tuple) do
     with {:low_index, :gt} <- {:low_index, compare(value, elem(tuple, 0))},
