@@ -26,7 +26,7 @@ defmodule Bsearch do
 
   @spec member?(tuple(), any()) :: boolean()
   def member?(tuple, value) do
-    case _find_index(tuple, value) do
+    case find_index(tuple, value) do
       {:ok, _} -> true
       _ -> false
     end
@@ -55,14 +55,9 @@ defmodule Bsearch do
   """
 
   @spec find_index(tuple(), any()) :: {:ok, non_neg_integer()} | {:error, :not_found}
-  def find_index(tuple, value) do
-    _find_index(tuple, value)
-  end
+  def find_index({}, _), do: {:error, :not_found}
 
-  @spec _find_index(tuple(), any()) :: {:ok, non_neg_integer()} | {:error, :not_found}
-  defp _find_index({}, _), do: {:error, :not_found}
-
-  defp _find_index(tuple, value) when is_tuple(tuple) do
+  def find_index(tuple, value) when is_tuple(tuple) do
     with {:low_index, :gt} <- {:low_index, compare(value, elem(tuple, 0))},
          high_index <- tuple_size(tuple) - 1,
          {:high_index, :lt, high_index} <- {:high_index, compare(value, elem(tuple, high_index)), high_index} do
