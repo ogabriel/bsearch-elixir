@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [ "master" ]
     paths-ignore:
-      - benchmark/*
+      - 'benchmark/**'
 
 permissions:
   contents: read
