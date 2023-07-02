@@ -41,7 +41,7 @@ defmodule Benchmark do
   def run(inputs, tuple, list, map, index) do
     IO.puts("""
     #######################
-    Starting test for #{index}
+    Starting Benchmark for #{index} items
     #######################
     """)
 
