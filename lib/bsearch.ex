@@ -60,7 +60,7 @@ defmodule Bsearch do
   def find_index(tuple, value) when is_tuple(tuple) do
     with {:low_index, :gt} <- {:low_index, compare(value, elem(tuple, 0))},
          high_index <- tuple_size(tuple) - 1,
-         {:high_index, :lt, high_index} <- {:high_index, compare(value, elem(tuple, high_index)), high_index} do
+         {:high_index, :lt, _} <- {:high_index, compare(value, elem(tuple, high_index)), high_index} do
       _find_index(tuple, value, 0, high_index)
     else
       {:low_index, :eq} -> {:ok, 0}
