@@ -61,7 +61,7 @@ defmodule Bsearch do
     with {:low_index, :gt} <- {:low_index, compare(value, elem(tuple, 0))},
          high_index <- tuple_size(tuple) - 1,
          {:high_index, :lt, _} <- {:high_index, compare(value, elem(tuple, high_index)), high_index} do
-      _find_index(tuple, value, 0, high_index)
+      _find_index(tuple, value, 1, high_index - 1)
     else
       {:low_index, :eq} -> {:ok, 0}
       {:high_index, :eq, high_index} -> {:ok, high_index}
