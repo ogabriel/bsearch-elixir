@@ -29,7 +29,7 @@ defmodule Bsearch.MixProject do
       source_url: "https://github.com/ogabriel/bsearch-elixir/",
       docs: [
         main: "Bsearch",
-        extras: ["README.md"]
+        extras: ["README.md", "LICENSE"]
       ]
     ]
   end
