@@ -58,13 +58,12 @@ defmodule Bsearch do
   def find_index({}, _), do: {:error, :not_found}
 
   def find_index(tuple, value) when is_tuple(tuple) do
-    with {:low_index, :gt} <- {:low_index, compare(value, elem(tuple, 0))},
+    with {:gt, _} <- {compare(value, elem(tuple, 0)), 0},
          high_index <- tuple_size(tuple) - 1,
-         {:high_index, :lt, _} <- {:high_index, compare(value, elem(tuple, high_index)), high_index} do
+         {:lt, _} <- {compare(value, elem(tuple, high_index)), high_index} do
       _find_index(tuple, value, 1, high_index - 1)
     else
-      {:low_index, :eq} -> {:ok, 0}
-      {:high_index, :eq, high_index} -> {:ok, high_index}
+      {:eq, index} -> {:ok, index}
       _ -> {:error, :not_found}
     end
   end
@@ -77,16 +76,16 @@ defmodule Bsearch do
     mid_value = elem(tuple, mid_index)
 
     case compare(value, mid_value) do
-      :eq -> {:ok, mid_index}
       :lt -> _find_index(tuple, value, low_index, mid_index - 1)
       :gt -> _find_index(tuple, value, mid_index + 1, high_index)
+      _ -> {:ok, mid_index}
     end
   end
 
   @spec compare(any(), any()) :: :eq | :lt | :gt
-  defp compare(value, value), do: :eq
   defp compare(value1, value2) when value1 < value2, do: :lt
   defp compare(value1, value2) when value1 > value2, do: :gt
+  defp compare(_, _), do: :eq
 
   @doc """
   Binary search only works on ordered tuples, so this function normalizes a tuple or a list
