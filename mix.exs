@@ -8,7 +8,6 @@ defmodule Bsearch.MixProject do
       elixir: "~> 1.12",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-
       # Coveralls
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
@@ -17,21 +16,21 @@ defmodule Bsearch.MixProject do
         "coveralls.post": :test,
         "coveralls.html": :test
       ],
-
       # Dialyzer
       dialyzer: [
         plt_local_path: "priv/plts/local.plt",
         plt_core_path: "priv/plts/core.plt"
       ],
-
-      # Docs
+      # ExDocs
       name: "Bsearch",
       source_url: "https://github.com/ogabriel/bsearch-elixir/",
       docs: [
         main: "Bsearch",
         extras: ["README.md", "LICENSE"]
       ],
-      description: "Implementation of a binary search using tuples"
+      description: "Implementation of a binary search using tuples",
+      # Hex.pm
+      package: package
     ]
   end
 
@@ -50,6 +49,15 @@ defmodule Bsearch.MixProject do
       {:excoveralls, "~> 0.10", only: :test},
       {:ex_doc, "~> 0.27", only: :dev, runtime: false},
       {:faker, "~> 0.17", only: :test}
+    ]
+  end
+
+  defp package do
+    [
+      name: "bsearch",
+      files: ~w(lib .formatter.exs mix.exs README* LICENSE* CHANGELOG*),
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/ogabriel/bsearch-elixir"}
     ]
   end
 end
