@@ -8,6 +8,8 @@ defmodule Bsearch.MixProject do
       elixir: "~> 1.12",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
+
+      # Coveralls
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
         coveralls: :test,
@@ -15,9 +17,19 @@ defmodule Bsearch.MixProject do
         "coveralls.post": :test,
         "coveralls.html": :test
       ],
+
+      # Dialyzer
       dialyzer: [
         plt_local_path: "priv/plts/local.plt",
         plt_core_path: "priv/plts/core.plt"
+      ],
+
+      # Docs
+      name: "Bsearch",
+      source_url: "https://github.com/ogabriel/bsearch-elixir/",
+      docs: [
+        main: "Bsearch",
+        extras: ["README.md"]
       ]
     ]
   end
