@@ -76,15 +76,15 @@ defmodule Bsearch do
     mid_value = elem(tuple, mid_index)
 
     case compare(value, mid_value) do
-      :lt -> _find_index(tuple, value, low_index, mid_index - 1)
       :gt -> _find_index(tuple, value, mid_index + 1, high_index)
+      :lt -> _find_index(tuple, value, low_index, mid_index - 1)
       _ -> {:ok, mid_index}
     end
   end
 
-  @spec compare(any(), any()) :: :eq | :lt | :gt
-  defp compare(value1, value2) when value1 < value2, do: :lt
+  @spec compare(any(), any()) :: :gt | :lt | :eq
   defp compare(value1, value2) when value1 > value2, do: :gt
+  defp compare(value1, value2) when value1 < value2, do: :lt
   defp compare(_, _), do: :eq
 
   @doc """
