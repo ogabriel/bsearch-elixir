@@ -15,13 +15,9 @@ def deps do
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/bsearch>.
-
 ## TODO
 
 - member?/find_index
-  - use module.compare to compare certain data types  
+  - use module.compare to compare certain data types
   - find by function - like use a function to enter a map or something
 - valid? - check if the tuple is valid to be used by the binary search
