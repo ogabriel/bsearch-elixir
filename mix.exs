@@ -30,7 +30,8 @@ defmodule Bsearch.MixProject do
       docs: [
         main: "Bsearch",
         extras: ["README.md", "LICENSE"]
-      ]
+      ],
+      description: "Implementation of a binary search using tuples"
     ]
   end
 
