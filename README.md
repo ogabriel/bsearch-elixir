@@ -1,11 +1,12 @@
 # Bsearch
 
+[![Build Status](https://github.com/ogabriel/bsearch-elixir/workflows/Test/badge.svg)](https://github.com/ogabriel/bsearch-elixir/actions) [![Hex.pm](https://img.shields.io/hexpm/v/bsearch.svg)](https://hex.pm/packages/bsearch) [![Documentation](https://img.shields.io/badge/documentation-gray)](https://hexdocs.pm/bsearch/)
+
 Implementation of a binary search using tuples.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `bsearch` to your list of dependencies in `mix.exs`:
+The package can be installed by adding `bsearch` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
