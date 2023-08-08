@@ -6,8 +6,7 @@ Implementation of a binary search using tuples.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `bsearch` to your list of dependencies in `mix.exs`:
+The package can be installed by adding `bsearch` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
