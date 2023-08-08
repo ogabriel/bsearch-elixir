@@ -55,7 +55,7 @@ defmodule Bsearch.MixProject do
   defp package do
     [
       name: "bsearch",
-      files: ~w(lib .formatter.exs mix.exs README* LICENSE* CHANGELOG*),
+      files: ~w(lib .formatter.exs mix.exs README* LICENSE*),
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/ogabriel/bsearch-elixir"}
     ]
