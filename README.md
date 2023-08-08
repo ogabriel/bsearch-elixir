@@ -1,5 +1,7 @@
 # Bsearch
 
+[![Build Status](https://github.com/ogabriel/bsearch-elixir/workflows/test/badge.svg)](https://github.com/ogabriel/bsearch-elixir//actions) [![Hex.pm](https://img.shields.io/hexpm/v/bsearch.svg)](https://hex.pm/packages/bsearch) [![Documentation](https://img.shields.io/badge/documentation-gray)](https://hexdocs.pm/bsearch/)
+
 Implementation of a binary search using tuples.
 
 ## Installation
