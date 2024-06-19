@@ -1,8 +1,7 @@
 defmodule Benchmark do
   def generate_list(max) do
     1..max
-    |> Enum.map(& &1)
-    |> Enum.sort()
+    |> Enum.to_list()
   end
 
   def generate_input(tuple) do
@@ -21,7 +20,7 @@ defmodule Benchmark do
     }
   end
 
-  def run do
+  def run_all() do
     run(10)
     run(100)
     run(1000)
@@ -35,10 +34,6 @@ defmodule Benchmark do
     map = list |> Enum.map(&{&1, true}) |> Map.new()
     inputs = generate_input(tuple)
 
-    run(inputs, tuple, list, map, index)
-  end
-
-  def run(inputs, tuple, list, map, index) do
     IO.puts("""
     #######################
     Starting Benchmark for #{index} items
@@ -52,9 +47,10 @@ defmodule Benchmark do
         "Map.get" => fn value -> Map.get(map, value) end
       },
       inputs: inputs,
-      warmup: 3,
-      time: 10,
-      memory_time: 5,
+      warmup: 1,
+      memory_time: 2,
+      reduction_time: 2,
+      time: 5,
       formatters: [
         {Benchee.Formatters.Console, extended_statistics: true},
         {Benchee.Formatters.Markdown, file: "result_#{index}.md"}
