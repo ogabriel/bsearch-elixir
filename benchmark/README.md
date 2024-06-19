@@ -5,5 +5,5 @@ This is a project that benchmarks the Bsearch implementation against other metho
 ## How to run
 
 ```bash
-mix eval "Benchmark.run"
+mix eval "Benchmark.run_all"
 ```
