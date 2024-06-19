@@ -52,9 +52,10 @@ defmodule Benchmark do
         "Map.get" => fn value -> Map.get(map, value) end
       },
       inputs: inputs,
-      warmup: 3,
+      warmup: 1,
+      memory_time: 2,
+      reduction_time: 2,
       time: 10,
-      memory_time: 5,
       formatters: [
         {Benchee.Formatters.Console, extended_statistics: true},
         {Benchee.Formatters.Markdown, file: "result_#{index}.md"}
