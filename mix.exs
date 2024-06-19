@@ -30,7 +30,7 @@ defmodule Bsearch.MixProject do
       ],
       description: "Implementation of a binary search using tuples",
       # Hex.pm
-      package: package
+      package: package()
     ]
   end
 
