@@ -1,8 +1,7 @@
 defmodule Benchmark do
   def generate_list(max) do
     1..max
-    |> Enum.map(& &1)
-    |> Enum.sort()
+    |> Enum.to_list()
   end
 
   def generate_input(tuple) do
