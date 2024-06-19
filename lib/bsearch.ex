@@ -28,12 +28,12 @@ defmodule Bsearch do
   def member?({}, _), do: false
 
   def member?(tuple, value) when is_tuple(tuple) do
-    with {:gt, _} <- {compare(value, elem(tuple, 0)), 0},
+    with :gt <- compare(value, elem(tuple, 0)),
          high_index <- tuple_size(tuple) - 1,
-         {:lt, _} <- {compare(value, elem(tuple, high_index)), high_index} do
+         :lt <- compare(value, elem(tuple, high_index)) do
       _member(tuple, value, 1, high_index - 1)
     else
-      {:eq, _} -> true
+      :eq -> true
       _ -> false
     end
   end
