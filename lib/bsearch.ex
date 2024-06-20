@@ -38,26 +38,43 @@ defmodule Bsearch do
     with first_value <- elem(tuple, 0),
          false <- value == first_value,
          true <- value > first_value,
-         high_index <- tuple_size(tuple) - 1,
+         size <- tuple_size(tuple),
+         high_index <- size - 1,
          last_value <- elem(tuple, high_index),
          false <- value == last_value,
-         true <- value < last_value do
+         true <- value < last_value,
+         true <- size > 2 do
       _member(tuple, value, 1, high_index - 1)
     else
       value -> value
     end
   end
 
-  defp _member(_, _, low_index, high_index) when low_index > high_index, do: false
-
   defp _member(tuple, value, low_index, high_index) do
     mid_index = div(low_index + high_index, 2)
     mid_value = elem(tuple, mid_index)
 
     cond do
-      value < mid_value -> _member(tuple, value, low_index, mid_index - 1)
-      value > mid_value -> _member(tuple, value, mid_index + 1, high_index)
-      value == mid_value -> true
+      value < mid_value ->
+        high_index = mid_index - 1
+
+        if low_index > high_index do
+          false
+        else
+          _member(tuple, value, low_index, high_index)
+        end
+
+      value > mid_value ->
+        low_index = mid_index + 1
+
+        if low_index > high_index do
+          false
+        else
+          _member(tuple, value, low_index, high_index)
+        end
+
+      value == mid_value ->
+        true
     end
   end
 
