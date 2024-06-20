@@ -50,6 +50,15 @@ defmodule Bsearch do
 
   defp _member(_, _, low_index, high_index) when low_index > high_index, do: false
 
+  defp _member(tuple, value, index, index) do
+    mid_value = elem(tuple, index)
+
+    cond do
+      value == mid_value -> true
+      true -> false
+    end
+  end
+
   defp _member(tuple, value, low_index, high_index) do
     mid_index = div(low_index + high_index, 2)
     mid_value = elem(tuple, mid_index)
