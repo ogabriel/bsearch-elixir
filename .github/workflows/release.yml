@@ -38,6 +38,21 @@ jobs:
       if: steps.deps.outputs.cache-hit != 'true'
       run: mix deps.get
 
+    - name: Restore compile cache
+      id: compile
+      uses: actions/cache@v3
+      with:
+        path: _build
+        key: compile-${{ matrix.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ hashFiles('**/mix.lock') }}
+        restore-keys: |
+          compile-${{ matrix.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-
+
+    - name: Compile dependencies
+      run: mix deps.compile
+
+    - name: Compile code
+      run: mix compile --warnings-as-errors
+
     - name: Publish to hex
       run: mix hex.publish --yes
       env:
