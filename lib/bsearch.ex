@@ -25,10 +25,29 @@ defmodule Bsearch do
   """
 
   @spec member?(tuple(), any()) :: boolean()
-  def member?(tuple, value) do
-    case find_index(tuple, value) do
-      {:ok, _} -> true
+  def member?({}, _), do: false
+
+  def member?(tuple, value) when is_tuple(tuple) do
+    with :gt <- compare(value, elem(tuple, 0)),
+         high_index <- tuple_size(tuple) - 1,
+         :lt <- compare(value, elem(tuple, high_index)) do
+      _member(tuple, value, 1, high_index - 1)
+    else
+      :eq -> true
       _ -> false
+    end
+  end
+
+  defp _member(_, _, low_index, high_index) when low_index > high_index, do: false
+
+  defp _member(tuple, value, low_index, high_index) do
+    mid_index = div(low_index + high_index, 2)
+    mid_value = elem(tuple, mid_index)
+
+    case compare(value, mid_value) do
+      :gt -> _member(tuple, value, mid_index + 1, high_index)
+      :lt -> _member(tuple, value, low_index, mid_index - 1)
+      _ -> true
     end
   end
 
