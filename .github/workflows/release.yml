@@ -1,0 +1,44 @@
+name: release
+
+on:
+  push:
+    tags:
+    - "v*.*.*"
+
+jobs:
+  publish:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+        - elixir: 1.17.x
+          otp: 26
+          os: ubuntu-latest
+
+    steps:
+    - name: Checkout
+    - uses: actions/checkout@v3
+
+    - name: Setup elixir and erlang
+      uses: erlef/setup-beam@v1
+      with:
+        otp-version: ${{ matrix.otp }}
+        elixir-version: ${{ matrix.elixir }}
+
+    - name: Restore dependencies cache
+      id: deps
+      uses: actions/cache@v3
+      with:
+        path: deps
+        key: deps-${{ matrix.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ hashFiles('**/mix.lock') }}
+        restore-keys: |
+          deps-${{ matrix.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-
+
+    - name: Install dependencies
+      if: steps.deps.outputs.cache-hit != 'true'
+      run: mix deps.get
+
+    - name: Publish to hex
+      run: mix hex.publish --yes
+      env:
+        HEX_API_KEY: ${{ secrets.HEX_API_KEY }}

@@ -6,6 +6,7 @@ on:
     paths-ignore:
     - 'README.md'
     - 'benchmark/**'
+    - '.github/workflows/release.yml'
 
 permissions:
   contents: read
