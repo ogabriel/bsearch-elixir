@@ -1,6 +1,6 @@
 Benchmark
 
-Benchmark run from 2024-06-20 13:28:53.976552Z UTC
+Benchmark run from 2024-06-20 14:27:14.635276Z UTC
 
 ## System
 
@@ -49,7 +49,7 @@ Benchmark suite executing with the following configuration:
 
 
 
-__Input: 000%__
+__Input: 1 - Item lower then initial value__
 
 Run Time
 
@@ -65,29 +65,29 @@ Run Time
 
   <tr>
     <td style="white-space: nowrap">Bsearch.member?</td>
-    <td style="white-space: nowrap; text-align: right">25.82 M</td>
-    <td style="white-space: nowrap; text-align: right">38.72 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;2208.82%</td>
-    <td style="white-space: nowrap; text-align: right">40 ns</td>
-    <td style="white-space: nowrap; text-align: right">50 ns</td>
-  </tr>
-
-  <tr>
-    <td style="white-space: nowrap">Enum.member?</td>
-    <td style="white-space: nowrap; text-align: right">25.82 M</td>
-    <td style="white-space: nowrap; text-align: right">38.73 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;612.85%</td>
+    <td style="white-space: nowrap; text-align: right">24.80 M</td>
+    <td style="white-space: nowrap; text-align: right">40.32 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;2389.99%</td>
     <td style="white-space: nowrap; text-align: right">40 ns</td>
     <td style="white-space: nowrap; text-align: right">50 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Map.get</td>
-    <td style="white-space: nowrap; text-align: right">21.14 M</td>
-    <td style="white-space: nowrap; text-align: right">47.31 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;6367.61%</td>
-    <td style="white-space: nowrap; text-align: right">50 ns</td>
+    <td style="white-space: nowrap; text-align: right">22.31 M</td>
+    <td style="white-space: nowrap; text-align: right">44.83 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;6770.92%</td>
+    <td style="white-space: nowrap; text-align: right">40 ns</td>
     <td style="white-space: nowrap; text-align: right">60 ns</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Enum.member?</td>
+    <td style="white-space: nowrap; text-align: right">0.94 M</td>
+    <td style="white-space: nowrap; text-align: right">1061.15 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;78.87%</td>
+    <td style="white-space: nowrap; text-align: right">1050 ns</td>
+    <td style="white-space: nowrap; text-align: right">1170 ns</td>
   </tr>
 
 </table>
@@ -102,19 +102,145 @@ Run Time Comparison
     <th style="text-align: right">Slower</th>
   <tr>
     <td style="white-space: nowrap">Bsearch.member?</td>
-    <td style="white-space: nowrap;text-align: right">25.82 M</td>
+    <td style="white-space: nowrap;text-align: right">24.80 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
+    <td style="white-space: nowrap">Map.get</td>
+    <td style="white-space: nowrap; text-align: right">22.31 M</td>
+    <td style="white-space: nowrap; text-align: right">1.11x</td>
+  </tr>
+
+  <tr>
     <td style="white-space: nowrap">Enum.member?</td>
-    <td style="white-space: nowrap; text-align: right">25.82 M</td>
-    <td style="white-space: nowrap; text-align: right">1.0x</td>
+    <td style="white-space: nowrap; text-align: right">0.94 M</td>
+    <td style="white-space: nowrap; text-align: right">26.32x</td>
+  </tr>
+
+</table>
+
+
+
+Memory Usage
+
+<table style="width: 1%">
+  <tr>
+    <th>Name</th>
+    <th style="text-align: right">Average</th>
+    <th style="text-align: right">Factor</th>
+  </tr>
+  <tr>
+    <td style="white-space: nowrap">Bsearch.member?</td>
+    <td style="white-space: nowrap">0 B</td>
+    <td>&nbsp;</td>
+  </tr>
+    <tr>
+    <td style="white-space: nowrap">Map.get</td>
+    <td style="white-space: nowrap">0 B</td>
+    <td>1.0x</td>
+  </tr>
+    <tr>
+    <td style="white-space: nowrap">Enum.member?</td>
+    <td style="white-space: nowrap">0 B</td>
+    <td>1.0x</td>
+  </tr>
+</table>
+
+
+
+Reduction Count
+
+<table style="width: 1%">
+  <tr>
+    <th>Name</th>
+    <th style="text-align: right">Average</th>
+    <th style="text-align: right">Factor</th>
+  </tr>
+  <tr>
+    <td style="white-space: nowrap">Bsearch.member?</td>
+    <td style="white-space: nowrap">3</td>
+    <td>&nbsp;</td>
+  </tr>
+    <tr>
+    <td style="white-space: nowrap">Map.get</td>
+    <td style="white-space: nowrap">3</td>
+    <td>1.0x</td>
+  </tr>
+    <tr>
+    <td style="white-space: nowrap">Enum.member?</td>
+    <td style="white-space: nowrap">66</td>
+    <td>22.0x</td>
+  </tr>
+</table>
+
+
+__Input: 2 - Item at p0__
+
+Run Time
+
+<table style="width: 1%">
+  <tr>
+    <th>Name</th>
+    <th style="text-align: right">IPS</th>
+    <th style="text-align: right">Average</th>
+    <th style="text-align: right">Devitation</th>
+    <th style="text-align: right">Median</th>
+    <th style="text-align: right">99th&nbsp;%</th>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Enum.member?</td>
+    <td style="white-space: nowrap; text-align: right">26.13 M</td>
+    <td style="white-space: nowrap; text-align: right">38.27 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;957.17%</td>
+    <td style="white-space: nowrap; text-align: right">40 ns</td>
+    <td style="white-space: nowrap; text-align: right">50 ns</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Bsearch.member?</td>
+    <td style="white-space: nowrap; text-align: right">25.48 M</td>
+    <td style="white-space: nowrap; text-align: right">39.25 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;2885.62%</td>
+    <td style="white-space: nowrap; text-align: right">40 ns</td>
+    <td style="white-space: nowrap; text-align: right">50 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Map.get</td>
-    <td style="white-space: nowrap; text-align: right">21.14 M</td>
+    <td style="white-space: nowrap; text-align: right">21.50 M</td>
+    <td style="white-space: nowrap; text-align: right">46.51 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;6996.82%</td>
+    <td style="white-space: nowrap; text-align: right">40 ns</td>
+    <td style="white-space: nowrap; text-align: right">60 ns</td>
+  </tr>
+
+</table>
+
+
+Run Time Comparison
+
+<table style="width: 1%">
+  <tr>
+    <th>Name</th>
+    <th style="text-align: right">IPS</th>
+    <th style="text-align: right">Slower</th>
+  <tr>
+    <td style="white-space: nowrap">Enum.member?</td>
+    <td style="white-space: nowrap;text-align: right">26.13 M</td>
+    <td>&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Bsearch.member?</td>
+    <td style="white-space: nowrap; text-align: right">25.48 M</td>
+    <td style="white-space: nowrap; text-align: right">1.03x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Map.get</td>
+    <td style="white-space: nowrap; text-align: right">21.50 M</td>
     <td style="white-space: nowrap; text-align: right">1.22x</td>
   </tr>
 
@@ -131,12 +257,12 @@ Memory Usage
     <th style="text-align: right">Factor</th>
   </tr>
   <tr>
-    <td style="white-space: nowrap">Bsearch.member?</td>
+    <td style="white-space: nowrap">Enum.member?</td>
     <td style="white-space: nowrap">0 B</td>
     <td>&nbsp;</td>
   </tr>
     <tr>
-    <td style="white-space: nowrap">Enum.member?</td>
+    <td style="white-space: nowrap">Bsearch.member?</td>
     <td style="white-space: nowrap">0 B</td>
     <td>1.0x</td>
   </tr>
@@ -158,24 +284,24 @@ Reduction Count
     <th style="text-align: right">Factor</th>
   </tr>
   <tr>
-    <td style="white-space: nowrap">Bsearch.member?</td>
-    <td style="white-space: nowrap">3</td>
+    <td style="white-space: nowrap">Enum.member?</td>
+    <td style="white-space: nowrap">4</td>
     <td>&nbsp;</td>
   </tr>
     <tr>
-    <td style="white-space: nowrap">Enum.member?</td>
-    <td style="white-space: nowrap">4</td>
-    <td>1.33x</td>
+    <td style="white-space: nowrap">Bsearch.member?</td>
+    <td style="white-space: nowrap">3</td>
+    <td>0.75x</td>
   </tr>
     <tr>
     <td style="white-space: nowrap">Map.get</td>
     <td style="white-space: nowrap">3</td>
-    <td>1.0x</td>
+    <td>0.75x</td>
   </tr>
 </table>
 
 
-__Input: 010%__
+__Input: 3 - Item at p1__
 
 Run Time
 
@@ -191,29 +317,29 @@ Run Time
 
   <tr>
     <td style="white-space: nowrap">Map.get</td>
-    <td style="white-space: nowrap; text-align: right">21.20 M</td>
-    <td style="white-space: nowrap; text-align: right">47.17 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;6847.91%</td>
+    <td style="white-space: nowrap; text-align: right">21.30 M</td>
+    <td style="white-space: nowrap; text-align: right">46.95 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;7573.10%</td>
+    <td style="white-space: nowrap; text-align: right">40 ns</td>
+    <td style="white-space: nowrap; text-align: right">60 ns</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Enum.member?</td>
+    <td style="white-space: nowrap; text-align: right">21.30 M</td>
+    <td style="white-space: nowrap; text-align: right">46.95 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;533.60%</td>
     <td style="white-space: nowrap; text-align: right">50 ns</td>
     <td style="white-space: nowrap; text-align: right">60 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Bsearch.member?</td>
-    <td style="white-space: nowrap; text-align: right">11.28 M</td>
-    <td style="white-space: nowrap; text-align: right">88.67 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;1179.35%</td>
-    <td style="white-space: nowrap; text-align: right">90 ns</td>
+    <td style="white-space: nowrap; text-align: right">11.96 M</td>
+    <td style="white-space: nowrap; text-align: right">83.59 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;535.64%</td>
+    <td style="white-space: nowrap; text-align: right">80 ns</td>
     <td style="white-space: nowrap; text-align: right">150 ns</td>
-  </tr>
-
-  <tr>
-    <td style="white-space: nowrap">Enum.member?</td>
-    <td style="white-space: nowrap; text-align: right">7.23 M</td>
-    <td style="white-space: nowrap; text-align: right">138.31 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;207.77%</td>
-    <td style="white-space: nowrap; text-align: right">140 ns</td>
-    <td style="white-space: nowrap; text-align: right">170 ns</td>
   </tr>
 
 </table>
@@ -228,20 +354,20 @@ Run Time Comparison
     <th style="text-align: right">Slower</th>
   <tr>
     <td style="white-space: nowrap">Map.get</td>
-    <td style="white-space: nowrap;text-align: right">21.20 M</td>
+    <td style="white-space: nowrap;text-align: right">21.30 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Bsearch.member?</td>
-    <td style="white-space: nowrap; text-align: right">11.28 M</td>
-    <td style="white-space: nowrap; text-align: right">1.88x</td>
+    <td style="white-space: nowrap">Enum.member?</td>
+    <td style="white-space: nowrap; text-align: right">21.30 M</td>
+    <td style="white-space: nowrap; text-align: right">1.0x</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Enum.member?</td>
-    <td style="white-space: nowrap; text-align: right">7.23 M</td>
-    <td style="white-space: nowrap; text-align: right">2.93x</td>
+    <td style="white-space: nowrap">Bsearch.member?</td>
+    <td style="white-space: nowrap; text-align: right">11.96 M</td>
+    <td style="white-space: nowrap; text-align: right">1.78x</td>
   </tr>
 
 </table>
@@ -262,12 +388,12 @@ Memory Usage
     <td>&nbsp;</td>
   </tr>
     <tr>
-    <td style="white-space: nowrap">Bsearch.member?</td>
+    <td style="white-space: nowrap">Enum.member?</td>
     <td style="white-space: nowrap">0 B</td>
     <td>1.0x</td>
   </tr>
     <tr>
-    <td style="white-space: nowrap">Enum.member?</td>
+    <td style="white-space: nowrap">Bsearch.member?</td>
     <td style="white-space: nowrap">0 B</td>
     <td>1.0x</td>
   </tr>
@@ -289,19 +415,19 @@ Reduction Count
     <td>&nbsp;</td>
   </tr>
     <tr>
-    <td style="white-space: nowrap">Bsearch.member?</td>
-    <td style="white-space: nowrap">12</td>
-    <td>4.0x</td>
+    <td style="white-space: nowrap">Enum.member?</td>
+    <td style="white-space: nowrap">4</td>
+    <td>1.33x</td>
   </tr>
     <tr>
-    <td style="white-space: nowrap">Enum.member?</td>
-    <td style="white-space: nowrap">10</td>
-    <td>3.33x</td>
+    <td style="white-space: nowrap">Bsearch.member?</td>
+    <td style="white-space: nowrap">11</td>
+    <td>3.67x</td>
   </tr>
 </table>
 
 
-__Input: 025%__
+__Input: 4 - Item at p25__
 
 Run Time
 
@@ -317,29 +443,29 @@ Run Time
 
   <tr>
     <td style="white-space: nowrap">Map.get</td>
-    <td style="white-space: nowrap; text-align: right">21.26 M</td>
-    <td style="white-space: nowrap; text-align: right">47.03 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;4456.54%</td>
+    <td style="white-space: nowrap; text-align: right">21.02 M</td>
+    <td style="white-space: nowrap; text-align: right">47.57 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;5129.23%</td>
     <td style="white-space: nowrap; text-align: right">50 ns</td>
     <td style="white-space: nowrap; text-align: right">60 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Bsearch.member?</td>
-    <td style="white-space: nowrap; text-align: right">19.17 M</td>
-    <td style="white-space: nowrap; text-align: right">52.18 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;1892.01%</td>
+    <td style="white-space: nowrap; text-align: right">19.92 M</td>
+    <td style="white-space: nowrap; text-align: right">50.20 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;1812.68%</td>
     <td style="white-space: nowrap; text-align: right">50 ns</td>
     <td style="white-space: nowrap; text-align: right">70 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.member?</td>
-    <td style="white-space: nowrap; text-align: right">3.69 M</td>
-    <td style="white-space: nowrap; text-align: right">270.80 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;129.66%</td>
+    <td style="white-space: nowrap; text-align: right">3.57 M</td>
+    <td style="white-space: nowrap; text-align: right">280.29 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;159.19%</td>
     <td style="white-space: nowrap; text-align: right">270 ns</td>
-    <td style="white-space: nowrap; text-align: right">340 ns</td>
+    <td style="white-space: nowrap; text-align: right">360 ns</td>
   </tr>
 
 </table>
@@ -354,20 +480,20 @@ Run Time Comparison
     <th style="text-align: right">Slower</th>
   <tr>
     <td style="white-space: nowrap">Map.get</td>
-    <td style="white-space: nowrap;text-align: right">21.26 M</td>
+    <td style="white-space: nowrap;text-align: right">21.02 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Bsearch.member?</td>
-    <td style="white-space: nowrap; text-align: right">19.17 M</td>
-    <td style="white-space: nowrap; text-align: right">1.11x</td>
+    <td style="white-space: nowrap; text-align: right">19.92 M</td>
+    <td style="white-space: nowrap; text-align: right">1.06x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.member?</td>
-    <td style="white-space: nowrap; text-align: right">3.69 M</td>
-    <td style="white-space: nowrap; text-align: right">5.76x</td>
+    <td style="white-space: nowrap; text-align: right">3.57 M</td>
+    <td style="white-space: nowrap; text-align: right">5.89x</td>
   </tr>
 
 </table>
@@ -427,7 +553,7 @@ Reduction Count
 </table>
 
 
-__Input: 050%__
+__Input: 5 - Item at p50__
 
 Run Time
 
@@ -443,29 +569,29 @@ Run Time
 
   <tr>
     <td style="white-space: nowrap">Map.get</td>
-    <td style="white-space: nowrap; text-align: right">21.26 M</td>
-    <td style="white-space: nowrap; text-align: right">47.04 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;6363.70%</td>
-    <td style="white-space: nowrap; text-align: right">50 ns</td>
+    <td style="white-space: nowrap; text-align: right">21.89 M</td>
+    <td style="white-space: nowrap; text-align: right">45.69 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;6309.33%</td>
+    <td style="white-space: nowrap; text-align: right">40 ns</td>
     <td style="white-space: nowrap; text-align: right">60 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Bsearch.member?</td>
-    <td style="white-space: nowrap; text-align: right">21.19 M</td>
-    <td style="white-space: nowrap; text-align: right">47.20 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;1879.63%</td>
+    <td style="white-space: nowrap; text-align: right">21.27 M</td>
+    <td style="white-space: nowrap; text-align: right">47.01 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;1025.44%</td>
     <td style="white-space: nowrap; text-align: right">50 ns</td>
     <td style="white-space: nowrap; text-align: right">60 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.member?</td>
-    <td style="white-space: nowrap; text-align: right">2.01 M</td>
-    <td style="white-space: nowrap; text-align: right">497.55 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;110.47%</td>
+    <td style="white-space: nowrap; text-align: right">2.02 M</td>
+    <td style="white-space: nowrap; text-align: right">494.18 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;96.11%</td>
     <td style="white-space: nowrap; text-align: right">490 ns</td>
-    <td style="white-space: nowrap; text-align: right">620 ns</td>
+    <td style="white-space: nowrap; text-align: right">610 ns</td>
   </tr>
 
 </table>
@@ -480,20 +606,20 @@ Run Time Comparison
     <th style="text-align: right">Slower</th>
   <tr>
     <td style="white-space: nowrap">Map.get</td>
-    <td style="white-space: nowrap;text-align: right">21.26 M</td>
+    <td style="white-space: nowrap;text-align: right">21.89 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Bsearch.member?</td>
-    <td style="white-space: nowrap; text-align: right">21.19 M</td>
-    <td style="white-space: nowrap; text-align: right">1.0x</td>
+    <td style="white-space: nowrap; text-align: right">21.27 M</td>
+    <td style="white-space: nowrap; text-align: right">1.03x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.member?</td>
-    <td style="white-space: nowrap; text-align: right">2.01 M</td>
-    <td style="white-space: nowrap; text-align: right">10.58x</td>
+    <td style="white-space: nowrap; text-align: right">2.02 M</td>
+    <td style="white-space: nowrap; text-align: right">10.82x</td>
   </tr>
 
 </table>
@@ -553,7 +679,7 @@ Reduction Count
 </table>
 
 
-__Input: 075%__
+__Input: 6 - Item at p75__
 
 Run Time
 
@@ -569,29 +695,29 @@ Run Time
 
   <tr>
     <td style="white-space: nowrap">Map.get</td>
-    <td style="white-space: nowrap; text-align: right">21.84 M</td>
-    <td style="white-space: nowrap; text-align: right">45.78 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;7568.21%</td>
-    <td style="white-space: nowrap; text-align: right">40 ns</td>
+    <td style="white-space: nowrap; text-align: right">20.99 M</td>
+    <td style="white-space: nowrap; text-align: right">47.65 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;4836.59%</td>
+    <td style="white-space: nowrap; text-align: right">50 ns</td>
     <td style="white-space: nowrap; text-align: right">60 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Bsearch.member?</td>
-    <td style="white-space: nowrap; text-align: right">11.67 M</td>
-    <td style="white-space: nowrap; text-align: right">85.66 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;1242.93%</td>
-    <td style="white-space: nowrap; text-align: right">80 ns</td>
-    <td style="white-space: nowrap; text-align: right">110 ns</td>
+    <td style="white-space: nowrap; text-align: right">19.15 M</td>
+    <td style="white-space: nowrap; text-align: right">52.23 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;832.38%</td>
+    <td style="white-space: nowrap; text-align: right">50 ns</td>
+    <td style="white-space: nowrap; text-align: right">70 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.member?</td>
-    <td style="white-space: nowrap; text-align: right">1.40 M</td>
-    <td style="white-space: nowrap; text-align: right">715.49 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;104.30%</td>
-    <td style="white-space: nowrap; text-align: right">710 ns</td>
-    <td style="white-space: nowrap; text-align: right">850 ns</td>
+    <td style="white-space: nowrap; text-align: right">1.38 M</td>
+    <td style="white-space: nowrap; text-align: right">723.87 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;80.20%</td>
+    <td style="white-space: nowrap; text-align: right">720 ns</td>
+    <td style="white-space: nowrap; text-align: right">840 ns</td>
   </tr>
 
 </table>
@@ -606,20 +732,20 @@ Run Time Comparison
     <th style="text-align: right">Slower</th>
   <tr>
     <td style="white-space: nowrap">Map.get</td>
-    <td style="white-space: nowrap;text-align: right">21.84 M</td>
+    <td style="white-space: nowrap;text-align: right">20.99 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Bsearch.member?</td>
-    <td style="white-space: nowrap; text-align: right">11.67 M</td>
-    <td style="white-space: nowrap; text-align: right">1.87x</td>
+    <td style="white-space: nowrap; text-align: right">19.15 M</td>
+    <td style="white-space: nowrap; text-align: right">1.1x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.member?</td>
-    <td style="white-space: nowrap; text-align: right">1.40 M</td>
-    <td style="white-space: nowrap; text-align: right">15.63x</td>
+    <td style="white-space: nowrap; text-align: right">1.38 M</td>
+    <td style="white-space: nowrap; text-align: right">15.19x</td>
   </tr>
 
 </table>
@@ -668,8 +794,8 @@ Reduction Count
   </tr>
     <tr>
     <td style="white-space: nowrap">Bsearch.member?</td>
-    <td style="white-space: nowrap">11</td>
-    <td>3.67x</td>
+    <td style="white-space: nowrap">4</td>
+    <td>1.33x</td>
   </tr>
     <tr>
     <td style="white-space: nowrap">Enum.member?</td>
@@ -679,7 +805,7 @@ Reduction Count
 </table>
 
 
-__Input: 090%__
+__Input: 7 - Item at p99__
 
 Run Time
 
@@ -695,29 +821,29 @@ Run Time
 
   <tr>
     <td style="white-space: nowrap">Map.get</td>
-    <td style="white-space: nowrap; text-align: right">22.26 M</td>
-    <td style="white-space: nowrap; text-align: right">44.93 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;7785.27%</td>
-    <td style="white-space: nowrap; text-align: right">40 ns</td>
+    <td style="white-space: nowrap; text-align: right">20.21 M</td>
+    <td style="white-space: nowrap; text-align: right">49.48 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;5294.22%</td>
+    <td style="white-space: nowrap; text-align: right">50 ns</td>
     <td style="white-space: nowrap; text-align: right">60 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Bsearch.member?</td>
-    <td style="white-space: nowrap; text-align: right">11.47 M</td>
-    <td style="white-space: nowrap; text-align: right">87.15 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;626.38%</td>
+    <td style="white-space: nowrap; text-align: right">12.26 M</td>
+    <td style="white-space: nowrap; text-align: right">81.54 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;518.11%</td>
     <td style="white-space: nowrap; text-align: right">80 ns</td>
-    <td style="white-space: nowrap; text-align: right">150 ns</td>
+    <td style="white-space: nowrap; text-align: right">110 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.member?</td>
-    <td style="white-space: nowrap; text-align: right">1.22 M</td>
-    <td style="white-space: nowrap; text-align: right">822.15 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;59.44%</td>
-    <td style="white-space: nowrap; text-align: right">800 ns</td>
-    <td style="white-space: nowrap; text-align: right">1060 ns</td>
+    <td style="white-space: nowrap; text-align: right">1.06 M</td>
+    <td style="white-space: nowrap; text-align: right">944.62 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;57.55%</td>
+    <td style="white-space: nowrap; text-align: right">940 ns</td>
+    <td style="white-space: nowrap; text-align: right">1070 ns</td>
   </tr>
 
 </table>
@@ -732,20 +858,20 @@ Run Time Comparison
     <th style="text-align: right">Slower</th>
   <tr>
     <td style="white-space: nowrap">Map.get</td>
-    <td style="white-space: nowrap;text-align: right">22.26 M</td>
+    <td style="white-space: nowrap;text-align: right">20.21 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Bsearch.member?</td>
-    <td style="white-space: nowrap; text-align: right">11.47 M</td>
-    <td style="white-space: nowrap; text-align: right">1.94x</td>
+    <td style="white-space: nowrap; text-align: right">12.26 M</td>
+    <td style="white-space: nowrap; text-align: right">1.65x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.member?</td>
-    <td style="white-space: nowrap; text-align: right">1.22 M</td>
-    <td style="white-space: nowrap; text-align: right">18.3x</td>
+    <td style="white-space: nowrap; text-align: right">1.06 M</td>
+    <td style="white-space: nowrap; text-align: right">19.09x</td>
   </tr>
 
 </table>
@@ -799,13 +925,13 @@ Reduction Count
   </tr>
     <tr>
     <td style="white-space: nowrap">Enum.member?</td>
-    <td style="white-space: nowrap">59</td>
-    <td>19.67x</td>
+    <td style="white-space: nowrap">65</td>
+    <td>21.67x</td>
   </tr>
 </table>
 
 
-__Input: 100%__
+__Input: 8 - Item at p100__
 
 Run Time
 
@@ -821,29 +947,29 @@ Run Time
 
   <tr>
     <td style="white-space: nowrap">Bsearch.member?</td>
-    <td style="white-space: nowrap; text-align: right">24.62 M</td>
-    <td style="white-space: nowrap; text-align: right">40.61 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;2821.77%</td>
+    <td style="white-space: nowrap; text-align: right">24.44 M</td>
+    <td style="white-space: nowrap; text-align: right">40.92 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;2317.06%</td>
     <td style="white-space: nowrap; text-align: right">40 ns</td>
     <td style="white-space: nowrap; text-align: right">50 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Map.get</td>
-    <td style="white-space: nowrap; text-align: right">22.22 M</td>
-    <td style="white-space: nowrap; text-align: right">45.01 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;7777.10%</td>
-    <td style="white-space: nowrap; text-align: right">40 ns</td>
+    <td style="white-space: nowrap; text-align: right">20.92 M</td>
+    <td style="white-space: nowrap; text-align: right">47.79 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;6321.02%</td>
+    <td style="white-space: nowrap; text-align: right">50 ns</td>
     <td style="white-space: nowrap; text-align: right">60 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.member?</td>
-    <td style="white-space: nowrap; text-align: right">1.07 M</td>
-    <td style="white-space: nowrap; text-align: right">938.22 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;89.05%</td>
-    <td style="white-space: nowrap; text-align: right">910 ns</td>
-    <td style="white-space: nowrap; text-align: right">1100 ns</td>
+    <td style="white-space: nowrap; text-align: right">1.03 M</td>
+    <td style="white-space: nowrap; text-align: right">971.64 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;80.53%</td>
+    <td style="white-space: nowrap; text-align: right">950 ns</td>
+    <td style="white-space: nowrap; text-align: right">1170 ns</td>
   </tr>
 
 </table>
@@ -858,20 +984,20 @@ Run Time Comparison
     <th style="text-align: right">Slower</th>
   <tr>
     <td style="white-space: nowrap">Bsearch.member?</td>
-    <td style="white-space: nowrap;text-align: right">24.62 M</td>
+    <td style="white-space: nowrap;text-align: right">24.44 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Map.get</td>
-    <td style="white-space: nowrap; text-align: right">22.22 M</td>
-    <td style="white-space: nowrap; text-align: right">1.11x</td>
+    <td style="white-space: nowrap; text-align: right">20.92 M</td>
+    <td style="white-space: nowrap; text-align: right">1.17x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.member?</td>
-    <td style="white-space: nowrap; text-align: right">1.07 M</td>
-    <td style="white-space: nowrap; text-align: right">23.1x</td>
+    <td style="white-space: nowrap; text-align: right">1.03 M</td>
+    <td style="white-space: nowrap; text-align: right">23.74x</td>
   </tr>
 
 </table>
@@ -931,7 +1057,7 @@ Reduction Count
 </table>
 
 
-__Input: higher__
+__Input: 9 - Item higher then last value__
 
 Run Time
 
@@ -947,28 +1073,28 @@ Run Time
 
   <tr>
     <td style="white-space: nowrap">Bsearch.member?</td>
-    <td style="white-space: nowrap; text-align: right">24.66 M</td>
-    <td style="white-space: nowrap; text-align: right">40.55 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;2359.22%</td>
+    <td style="white-space: nowrap; text-align: right">23.75 M</td>
+    <td style="white-space: nowrap; text-align: right">42.11 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;2506.20%</td>
     <td style="white-space: nowrap; text-align: right">40 ns</td>
-    <td style="white-space: nowrap; text-align: right">50 ns</td>
+    <td style="white-space: nowrap; text-align: right">60 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Map.get</td>
-    <td style="white-space: nowrap; text-align: right">22.60 M</td>
-    <td style="white-space: nowrap; text-align: right">44.25 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;4692.79%</td>
+    <td style="white-space: nowrap; text-align: right">22.93 M</td>
+    <td style="white-space: nowrap; text-align: right">43.61 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;6853.21%</td>
     <td style="white-space: nowrap; text-align: right">40 ns</td>
     <td style="white-space: nowrap; text-align: right">60 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.member?</td>
-    <td style="white-space: nowrap; text-align: right">1.00 M</td>
-    <td style="white-space: nowrap; text-align: right">996.21 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;58.87%</td>
-    <td style="white-space: nowrap; text-align: right">1040 ns</td>
+    <td style="white-space: nowrap; text-align: right">0.94 M</td>
+    <td style="white-space: nowrap; text-align: right">1068.39 ns</td>
+    <td style="white-space: nowrap; text-align: right">&plusmn;53.58%</td>
+    <td style="white-space: nowrap; text-align: right">1060 ns</td>
     <td style="white-space: nowrap; text-align: right">1170 ns</td>
   </tr>
 
@@ -984,146 +1110,20 @@ Run Time Comparison
     <th style="text-align: right">Slower</th>
   <tr>
     <td style="white-space: nowrap">Bsearch.member?</td>
-    <td style="white-space: nowrap;text-align: right">24.66 M</td>
+    <td style="white-space: nowrap;text-align: right">23.75 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Map.get</td>
-    <td style="white-space: nowrap; text-align: right">22.60 M</td>
-    <td style="white-space: nowrap; text-align: right">1.09x</td>
+    <td style="white-space: nowrap; text-align: right">22.93 M</td>
+    <td style="white-space: nowrap; text-align: right">1.04x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.member?</td>
-    <td style="white-space: nowrap; text-align: right">1.00 M</td>
-    <td style="white-space: nowrap; text-align: right">24.57x</td>
-  </tr>
-
-</table>
-
-
-
-Memory Usage
-
-<table style="width: 1%">
-  <tr>
-    <th>Name</th>
-    <th style="text-align: right">Average</th>
-    <th style="text-align: right">Factor</th>
-  </tr>
-  <tr>
-    <td style="white-space: nowrap">Bsearch.member?</td>
-    <td style="white-space: nowrap">0 B</td>
-    <td>&nbsp;</td>
-  </tr>
-    <tr>
-    <td style="white-space: nowrap">Map.get</td>
-    <td style="white-space: nowrap">0 B</td>
-    <td>1.0x</td>
-  </tr>
-    <tr>
-    <td style="white-space: nowrap">Enum.member?</td>
-    <td style="white-space: nowrap">0 B</td>
-    <td>1.0x</td>
-  </tr>
-</table>
-
-
-
-Reduction Count
-
-<table style="width: 1%">
-  <tr>
-    <th>Name</th>
-    <th style="text-align: right">Average</th>
-    <th style="text-align: right">Factor</th>
-  </tr>
-  <tr>
-    <td style="white-space: nowrap">Bsearch.member?</td>
-    <td style="white-space: nowrap">3</td>
-    <td>&nbsp;</td>
-  </tr>
-    <tr>
-    <td style="white-space: nowrap">Map.get</td>
-    <td style="white-space: nowrap">3</td>
-    <td>1.0x</td>
-  </tr>
-    <tr>
-    <td style="white-space: nowrap">Enum.member?</td>
-    <td style="white-space: nowrap">66</td>
-    <td>22.0x</td>
-  </tr>
-</table>
-
-
-__Input: lower__
-
-Run Time
-
-<table style="width: 1%">
-  <tr>
-    <th>Name</th>
-    <th style="text-align: right">IPS</th>
-    <th style="text-align: right">Average</th>
-    <th style="text-align: right">Devitation</th>
-    <th style="text-align: right">Median</th>
-    <th style="text-align: right">99th&nbsp;%</th>
-  </tr>
-
-  <tr>
-    <td style="white-space: nowrap">Bsearch.member?</td>
-    <td style="white-space: nowrap; text-align: right">25.27 M</td>
-    <td style="white-space: nowrap; text-align: right">39.58 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;2184.71%</td>
-    <td style="white-space: nowrap; text-align: right">40 ns</td>
-    <td style="white-space: nowrap; text-align: right">50 ns</td>
-  </tr>
-
-  <tr>
-    <td style="white-space: nowrap">Map.get</td>
-    <td style="white-space: nowrap; text-align: right">22.52 M</td>
-    <td style="white-space: nowrap; text-align: right">44.40 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;6695.47%</td>
-    <td style="white-space: nowrap; text-align: right">40 ns</td>
-    <td style="white-space: nowrap; text-align: right">60 ns</td>
-  </tr>
-
-  <tr>
-    <td style="white-space: nowrap">Enum.member?</td>
-    <td style="white-space: nowrap; text-align: right">0.93 M</td>
-    <td style="white-space: nowrap; text-align: right">1070.34 ns</td>
-    <td style="white-space: nowrap; text-align: right">&plusmn;61.97%</td>
-    <td style="white-space: nowrap; text-align: right">1050 ns</td>
-    <td style="white-space: nowrap; text-align: right">1170 ns</td>
-  </tr>
-
-</table>
-
-
-Run Time Comparison
-
-<table style="width: 1%">
-  <tr>
-    <th>Name</th>
-    <th style="text-align: right">IPS</th>
-    <th style="text-align: right">Slower</th>
-  <tr>
-    <td style="white-space: nowrap">Bsearch.member?</td>
-    <td style="white-space: nowrap;text-align: right">25.27 M</td>
-    <td>&nbsp;</td>
-  </tr>
-
-  <tr>
-    <td style="white-space: nowrap">Map.get</td>
-    <td style="white-space: nowrap; text-align: right">22.52 M</td>
-    <td style="white-space: nowrap; text-align: right">1.12x</td>
-  </tr>
-
-  <tr>
-    <td style="white-space: nowrap">Enum.member?</td>
-    <td style="white-space: nowrap; text-align: right">0.93 M</td>
-    <td style="white-space: nowrap; text-align: right">27.04x</td>
+    <td style="white-space: nowrap; text-align: right">0.94 M</td>
+    <td style="white-space: nowrap; text-align: right">25.37x</td>
   </tr>
 
 </table>
