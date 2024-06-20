@@ -4,20 +4,30 @@ defmodule Benchmark do
     |> Enum.to_list()
   end
 
-  def generate_input(tuple) do
-    size = tuple_size(tuple) - 1
-
-    %{
-      "000%" => elem(tuple, 0),
-      "010%" => elem(tuple, div(size, 10)),
-      "025%" => elem(tuple, div(size, 4)),
-      "050%" => elem(tuple, div(size, 2)),
-      "075%" => elem(tuple, div(size, 4) * 3),
-      "090%" => elem(tuple, div(size, 10) * 9),
-      "100%" => elem(tuple, size),
-      "lower" => 0,
-      "higher" => 999_999
-    }
+  def generate_input(tuple, index) do
+    if index >= 100 do
+      %{
+        "1 - Item lower then initial value" => elem(tuple, 0) - 1,
+        "2 - Item at p0" => elem(tuple, 0),
+        "3 - Item at p1" => elem(tuple, div(index, 100) * 1 - 1),
+        "4 - Item at p25" => elem(tuple, div(index, 4) - 1),
+        "5 - Item at p50" => elem(tuple, div(index, 2) - 1),
+        "6 - Item at p75" => elem(tuple, div(index, 4) * 3 - 1),
+        "7 - Item at p99" => elem(tuple, div(index, 100) * 99 - 1),
+        "8 - Item at p100" => elem(tuple, index - 1),
+        "9 - Item higher then last value" => elem(tuple, index - 1) + 1
+      }
+    else
+      %{
+        "1 - Item lower then initial value" => elem(tuple, 0) - 1,
+        "2 - Item at p0" => elem(tuple, 0),
+        "3 - Item at p25" => elem(tuple, div(index, 10) * 3 - 1),
+        "4 - Item at p50" => elem(tuple, div(index, 2) - 1),
+        "5 - Item at p75" => elem(tuple, div(index, 10) * 8 - 1),
+        "6 - Item at p100" => elem(tuple, index - 1),
+        "7 - Item higher then last value" => elem(tuple, index - 1) + 1
+      }
+    end
   end
 
   def run_all() do
@@ -32,7 +42,7 @@ defmodule Benchmark do
     list = generate_list(index)
     tuple = list |> List.to_tuple()
     map = list |> Enum.map(&{&1, true}) |> Map.new()
-    inputs = generate_input(tuple)
+    inputs = generate_input(tuple, index)
 
     IO.puts("""
     #######################
