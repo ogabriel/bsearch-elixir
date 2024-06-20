@@ -2,7 +2,12 @@ defmodule Bsearch do
   @moduledoc """
   Module that contains the functions to use the Binary search.
 
-  Also
+  Initially, on the start of the project, this module was populated by maintanable and easily understandable code, but
+  that code clearly didn't cut it when the objective was performance, each new call to a new function that was there
+  only to make things DRI could result in a 30% or more performance loss in benchmarks.
+
+  So all functions in this module are thought out to be the most performant as possible guided by benchmarks, even if 
+  they became rather unmaintainable.
   """
 
   @doc """
