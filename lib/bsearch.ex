@@ -1,6 +1,8 @@
 defmodule Bsearch do
   @moduledoc """
   Module that contains the functions to use the Binary search.
+
+  Also
   """
 
   @doc """
@@ -28,13 +30,16 @@ defmodule Bsearch do
   def member?({}, _), do: false
 
   def member?(tuple, value) when is_tuple(tuple) do
-    with :gt <- compare(value, elem(tuple, 0)),
+    with first_value <- elem(tuple, 0),
+         false <- value == first_value,
+         true <- value > first_value,
          high_index <- tuple_size(tuple) - 1,
-         :lt <- compare(value, elem(tuple, high_index)) do
+         last_value <- elem(tuple, high_index),
+         false <- value == last_value,
+         true <- value < last_value do
       _member(tuple, value, 1, high_index - 1)
     else
-      :eq -> true
-      _ -> false
+      value -> value
     end
   end
 
@@ -44,10 +49,10 @@ defmodule Bsearch do
     mid_index = div(low_index + high_index, 2)
     mid_value = elem(tuple, mid_index)
 
-    case compare(value, mid_value) do
-      :gt -> _member(tuple, value, mid_index + 1, high_index)
-      :lt -> _member(tuple, value, low_index, mid_index - 1)
-      _ -> true
+    cond do
+      value < mid_value -> _member(tuple, value, low_index, mid_index - 1)
+      value > mid_value -> _member(tuple, value, mid_index + 1, high_index)
+      value == mid_value -> true
     end
   end
 
