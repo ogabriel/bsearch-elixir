@@ -1,6 +1,13 @@
 defmodule Bsearch do
   @moduledoc """
   Module that contains the functions to use the Binary search.
+
+  Initially, on the start of the project, this module was populated by maintanable and easily understandable code, but
+  that code clearly didn't cut it when the objective was performance, each new call to a new function that was there
+  only to make things DRI could result in a 30% or more performance loss in benchmarks.
+
+  So all functions in this module are thought out to be the most performant as possible guided by benchmarks, even if
+  they became rather unmaintainable.
   """
 
   @doc """
@@ -28,13 +35,16 @@ defmodule Bsearch do
   def member?({}, _), do: false
 
   def member?(tuple, value) when is_tuple(tuple) do
-    with :gt <- compare(value, elem(tuple, 0)),
+    with first_value <- elem(tuple, 0),
+         false <- value == first_value,
+         true <- value > first_value,
          high_index <- tuple_size(tuple) - 1,
-         :lt <- compare(value, elem(tuple, high_index)) do
+         last_value <- elem(tuple, high_index),
+         false <- value == last_value,
+         true <- value < last_value do
       _member(tuple, value, 1, high_index - 1)
     else
-      :eq -> true
-      _ -> false
+      value -> value
     end
   end
 
@@ -44,10 +54,10 @@ defmodule Bsearch do
     mid_index = div(low_index + high_index, 2)
     mid_value = elem(tuple, mid_index)
 
-    case compare(value, mid_value) do
-      :gt -> _member(tuple, value, mid_index + 1, high_index)
-      :lt -> _member(tuple, value, low_index, mid_index - 1)
-      _ -> true
+    cond do
+      value < mid_value -> _member(tuple, value, low_index, mid_index - 1)
+      value > mid_value -> _member(tuple, value, mid_index + 1, high_index)
+      value == mid_value -> true
     end
   end
 
