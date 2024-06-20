@@ -148,8 +148,9 @@ defmodule Bsearch do
   end
 
   def normalize(tuple) when is_tuple(tuple) do
-    tuple
-    |> Tuple.to_list()
-    |> normalize
+    _quick_sort(tuple)
+  end
+
+  defp _quick_sort(tuple) do
   end
 end
